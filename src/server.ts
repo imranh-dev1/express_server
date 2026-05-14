@@ -12,9 +12,18 @@ app.get('/', (req: Request, res: Response) => {
     })
 })
 
-app.post("/", (req: Request, res: Response) => {
-    console.log(req.body)
+app.post("/user", (req: Request, res: Response) => {
+    // console.log(req.body)
+    const { id, name, email, password, explore } = req.body;
+    const user = {
+        id, name, email, explore
+    }
+    res.status(201).json({
+        meassage: "User created successfully",
+        data: user
+    })
 })
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
