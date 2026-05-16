@@ -36,12 +36,18 @@ app.get('/', (req: Request, res: Response) => {
     })
 })
 
-app.post("/user", (req: Request, res: Response) => {
+app.post("/api/users", async (req: Request, res: Response) => {
     // console.log(req.body)
     const { id, name, email, password, explore } = req.body;
     const user = {
         id, name, email, explore
     }
+    const result = await pool.query(` 
+        INSTER INTO users ()
+        `
+
+    )
+
     res.status(201).json({
         meassage: "User created successfully",
         data: user
