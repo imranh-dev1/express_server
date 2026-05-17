@@ -1,10 +1,8 @@
 import express, { type Application, type Request, type Response } from 'express'
-import { Pool } from 'pg'
 import config from './config'
-import { pool } from './db'
+import { userRoute } from './modules/user/user.route'
 
-const app: Application = express()
-const port = config.port
+const app: Application = express() 
 
 app.use(express.json())
 
@@ -15,27 +13,7 @@ app.get('/', (req: Request, res: Response) => {
     })
 })
 
-app.post("/api/users", async (req: Request, res: Response) => {
-    // console.log(req.body)
-    const { id, name, email, password, explore } = req.body;
-    const user = {
-        id, name, email, explore
-    }
-    const result = await pool.query(` 
-        INSTER INTO users ()
-        `
+app.use("/api/users", userRoute)
 
-    )
-
-    res.status(201).json({
-        meassage: "User created successfully",
-        data: user
-    })
-})
-
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
 
 export default app;
