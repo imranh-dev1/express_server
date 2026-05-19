@@ -4,5 +4,4 @@ export interface IProfile {
     bio: string,
     address: string,
     gender: string,
-
 }
