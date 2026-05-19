@@ -36,7 +36,7 @@ const singInUserFromDB = async (payload: { email: string, password: string }) =>
     const accessToken = jwt.sign(userPayload, config.jwt_secret as string, {
         expiresIn: "1d"
     })
-    console.log(accessToken)
+    // console.log(accessToken)
     return accessToken;
 
 }
